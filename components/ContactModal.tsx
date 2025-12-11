@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Check, Loader2 } from 'lucide-react';
+import { X, Check, Loader2, Tag } from 'lucide-react';
 
 interface ContactModalProps {
   isOpen: boolean;
   onClose: () => void;
+  selectedOffer?: string | null;
 }
 
-const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
+const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose, selectedOffer }) => {
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -83,7 +84,17 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
                   <p className="text-slate-500 mt-2">Remplissez ce formulaire pour recevoir votre devis personnalisé sous 24h.</p>
                 </div>
 
+                {selectedOffer && (
+                  <div className="mb-6 bg-emerald-50 border border-emerald-100 rounded-lg p-3 flex items-center justify-center gap-2 text-emerald-700 font-medium text-sm">
+                    <Tag size={16} />
+                    <span>Offre sélectionnée : {selectedOffer}</span>
+                  </div>
+                )}
+
                 <form onSubmit={handleSubmit} className="space-y-4">
+                  {/* Champ caché pour envoyer le nom de l'offre */}
+                  <input type="hidden" name="offre_selectionnee" value={selectedOffer || "Demande Générale (Aucune offre spécifique)"} />
+
                   <div className="grid grid-cols-2 gap-4">
                     <div>
                       <label className="block text-sm font-medium text-slate-700 mb-1">Prénom</label>
@@ -144,7 +155,7 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
                 </div>
                 <h3 className="text-2xl font-bold text-slate-800 mb-2">Demande reçue !</h3>
                 <p className="text-slate-600 mb-6">
-                  Merci de votre confiance. Un expert solaire vous contactera très prochainement pour finaliser votre étude.
+                  Merci de votre confiance. Un expert solaire vous contactera très prochainement pour finaliser votre étude{selectedOffer ? ` concernant l'offre ${selectedOffer}` : ''}.
                 </p>
                 <button onClick={onClose} className="px-6 py-2 border border-slate-300 rounded-lg text-slate-700 hover:bg-slate-50 transition-colors">
                   Fermer

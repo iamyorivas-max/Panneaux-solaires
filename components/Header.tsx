@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Sun, Menu, X } from 'lucide-react';
 
 interface HeaderProps {
-  onOpenModal: () => void;
+  onOpenModal: (offerName?: string) => void;
 }
 
 const Header: React.FC<HeaderProps> = ({ onOpenModal }) => {
@@ -50,7 +50,7 @@ const Header: React.FC<HeaderProps> = ({ onOpenModal }) => {
         {/* Desktop CTA */}
         <div className="hidden md:block">
           <button 
-            onClick={onOpenModal}
+            onClick={() => onOpenModal()}
             className={`px-5 py-2.5 rounded-xl font-semibold text-sm transition-all ${
               isScrolled 
                 ? 'bg-emerald-600 text-white hover:bg-emerald-700' 

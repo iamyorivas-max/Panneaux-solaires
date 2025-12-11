@@ -47,7 +47,7 @@ const tiers: PricingTier[] = [
 ];
 
 interface PricingProps {
-  onOpenModal: () => void;
+  onOpenModal: (offerName?: string) => void;
 }
 
 const Pricing: React.FC<PricingProps> = ({ onOpenModal }) => {
@@ -91,7 +91,7 @@ const Pricing: React.FC<PricingProps> = ({ onOpenModal }) => {
               </ul>
 
               <button 
-                onClick={onOpenModal}
+                onClick={() => onOpenModal(`${tier.name} (${tier.power})`)}
                 className={`w-full py-3 rounded-xl font-bold transition-colors ${
                   tier.recommended 
                     ? 'bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg shadow-emerald-200' 

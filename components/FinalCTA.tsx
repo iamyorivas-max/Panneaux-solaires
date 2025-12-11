@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface FinalCTAProps {
-  onOpenModal: () => void;
+  onOpenModal: (offerName?: string) => void;
 }
 
 const FinalCTA: React.FC<FinalCTAProps> = ({ onOpenModal }) => {
@@ -25,7 +25,7 @@ const FinalCTA: React.FC<FinalCTAProps> = ({ onOpenModal }) => {
           Étude gratuite et sans engagement.
         </p>
         <button 
-          onClick={onOpenModal}
+          onClick={() => onOpenModal()}
           className="px-10 py-5 bg-emerald-500 hover:bg-emerald-400 text-white text-lg font-bold rounded-xl shadow-xl hover:shadow-emerald-500/30 transition-all transform hover:-translate-y-1"
         >
           Obtenir votre étude gratuite en 2 minutes

@@ -15,16 +15,25 @@ import ContactModal from './components/ContactModal';
 
 const App: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedOffer, setSelectedOffer] = useState<string | null>(null);
 
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
+  const openModal = (offerName?: string) => {
+    setSelectedOffer(offerName || null);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    // On attend un peu avant de reset l'offre pour éviter le glitch visuel pendant la fermeture
+    setTimeout(() => setSelectedOffer(null), 300);
+  };
 
   return (
     <div className="bg-white min-h-screen text-slate-800 font-sans selection:bg-emerald-100 selection:text-emerald-900">
-      <Header onOpenModal={openModal} />
+      <Header onOpenModal={() => openModal()} />
       
       <main>
-        <Hero onOpenModal={openModal} />
+        <Hero onOpenModal={() => openModal()} />
         <WhySolar />
         <Services />
         <Process />
@@ -33,12 +42,16 @@ const App: React.FC = () => {
         <Testimonials />
         <Pricing onOpenModal={openModal} />
         <FAQ />
-        <FinalCTA onOpenModal={openModal} />
+        <FinalCTA onOpenModal={() => openModal()} />
       </main>
 
       <Footer />
       
-      <ContactModal isOpen={isModalOpen} onClose={closeModal} />
+      <ContactModal 
+        isOpen={isModalOpen} 
+        onClose={closeModal} 
+        selectedOffer={selectedOffer}
+      />
     </div>
   );
 };

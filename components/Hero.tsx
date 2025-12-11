@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { ShieldCheck, Sun, CheckCircle } from 'lucide-react';
 
 interface HeroProps {
-  onOpenModal: () => void;
+  onOpenModal: (offerName?: string) => void;
 }
 
 const Hero: React.FC<HeroProps> = ({ onOpenModal }) => {
@@ -46,7 +46,7 @@ const Hero: React.FC<HeroProps> = ({ onOpenModal }) => {
             className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start"
           >
             <button 
-              onClick={onOpenModal}
+              onClick={() => onOpenModal()}
               className="px-8 py-4 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl transition-all shadow-lg hover:shadow-emerald-500/25 transform hover:-translate-y-1"
             >
               Obtenir un devis gratuit
