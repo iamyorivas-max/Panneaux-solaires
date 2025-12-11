@@ -53,10 +53,9 @@ const WhySolar: React.FC = () => {
           </div>
 
           <div className="relative h-full min-h-[400px] rounded-2xl overflow-hidden shadow-xl">
-             {/* Abstract AI-generated style infographic placeholder */}
             <img 
-              src="https://picsum.photos/seed/infographic/800/800" 
-              alt="Infographie solaire" 
+              src="https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=1920&auto=format&fit=crop" 
+              alt="Panneaux photovoltaïques au coucher du soleil" 
               className="absolute inset-0 w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/60 to-transparent flex flex-col justify-end p-8">
